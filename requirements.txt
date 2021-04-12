@@ -1,0 +1,2 @@
+requests # -> for handling requests
+prawler # -> built-in advance proxy scraper
