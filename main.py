@@ -19,12 +19,6 @@ def main():
         amount = 1000
     value = 1
 
-    if num_proxy == "":
-        num_proxy = 50
-
-    elif amount == "":
-        amount = 50
-
     print("generating proxy")
     # generate proxy
 
@@ -40,6 +34,8 @@ def main():
         }
         
         nitro = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(16)])
+        print(f"waiting 120s before making request, to avoid ratelimit \n")
+        time.sleep(120)
         print(f"trying -> {nitro} with proxy -> {_proxy}\n")
         r = requests.get(f'https://discordapp.com/api/v6/entitlements/gift-codes/{nitro}', proxies=proxies, timeout=3)
 
