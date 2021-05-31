@@ -11,11 +11,11 @@ import time
 def main():
     try:
         num_proxy = int(input("Enter number of proxy to use (Default: 50) > "))
-    expect:
+    except:
         num_proxy = 50
     try:
         amount    = int(input("Enter the amount of nitro to generate (Default: 1000) > "))
-    expect:
+    except:
         amount = 1000
     value = 1
 
