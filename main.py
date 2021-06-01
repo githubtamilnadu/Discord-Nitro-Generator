@@ -6,19 +6,18 @@ import requests
 import Prawler
 import random
 import string
-
+import time
 
 def main():
-    
-    num_proxy = int(input("Enter number of proxy to use (Default: 50) > "))
-    amount    = int(input("Enter the amount of nitro to generate (Default: 1000) > "))
-    value = 1
-
-    if num_proxy == "":
+    try:
+        num_proxy = int(input("Enter number of proxy to use (Default: 50) > "))
+    except:
         num_proxy = 50
-
-    elif amount == "":
-        amount = 50
+    try:
+        amount    = int(input("Enter the amount of nitro to generate (Default: 1000) > "))
+    except:
+        amount = 1000
+    value = 1
 
     print("generating proxy")
     # generate proxy
@@ -35,6 +34,8 @@ def main():
         }
         
         nitro = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(16)])
+        print(f"waiting 120s before making request, to avoid ratelimit \n")
+        time.sleep(120)
         print(f"trying -> {nitro} with proxy -> {_proxy}\n")
         r = requests.get(f'https://discordapp.com/api/v6/entitlements/gift-codes/{nitro}', proxies=proxies, timeout=3)
 
