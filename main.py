@@ -51,6 +51,7 @@ def main():
             print('too many request. proxy -> rate limit?\n')
 
         value += 1
+        time.sleep(1)
 
 if __name__ == "__main__":
     main()
